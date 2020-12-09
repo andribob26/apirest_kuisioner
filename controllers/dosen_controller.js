@@ -4,7 +4,7 @@ exports.addDosen = async (req, res)=>{
 
     var dosen = new Dosen(
             {
-                namaDosen: req.body.namaPembeli,
+                namaDosen: req.body.namaDosen,
                 nip: req.body.nip,
                 noTelepon: req.body.nomorTelepon,
                 alamat: req.body.alamat,
