@@ -40,7 +40,7 @@ exports.getAllDosen = async(req, res)=>{
         for(let i = 0; i < dosen.length; i++){
             dosenData.push({
                 id: dosen[i]._id,
-                namaPembeli : dosen[i].namaPembeli,
+                namaDosen : dosen[i].namaDosen,
                 nip: dosen[i].nip,
                 noTelepon: dosen[i].noTelepon,
                 alamat: dosen[i].alamat,
