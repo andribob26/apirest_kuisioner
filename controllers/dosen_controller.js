@@ -63,3 +63,24 @@ exports.getAllDosen = async(req, res)=>{
         }
     })   
 }
+
+exports.deleteDosen = async(req, res)=>{
+    Dosen.findByIdAndRemove(req.params.id)
+    .then((dosen)=>{
+        if(!dosen){
+            res.status(404).json({
+                status: false,
+                message: "Data dosen tidak di temukan"
+            })
+        }else{
+            res.status(200).json({
+                status: true,
+                message: "Berhasil hapus data",
+            })
+        }
+    }).catch((err)=>{
+        res.json({
+            error: err
+        })
+    })
+}
