@@ -1,9 +1,9 @@
 const mongoose = require("mongoose")
 const timestamps  = require("mongoose-timestamp")
 
-DosenSchema = mongoose.Schema({
+GuruSchema = mongoose.Schema({
 
-    namaDosen:{
+    namaGuru:{
         type: String
     },
     nip:{
@@ -18,6 +18,6 @@ DosenSchema = mongoose.Schema({
 
 })
 
-DosenSchema.plugin(timestamps)
+GuruSchema.plugin(timestamps)
 
-module.exports = mongoose.model("Dosen", DosenSchema)
+module.exports = mongoose.model("Guru", GuruSchema)
