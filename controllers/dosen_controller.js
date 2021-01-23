@@ -84,3 +84,26 @@ exports.deleteDosen = async(req, res)=>{
         })
     })
 }
+
+exports.updateDosen = async(req, res)=>{
+    
+    Dosen.findByIdAndUpdate(req.params.id, req.body, {new: true})
+    .then((dosen)=>{
+        if(!dosen){
+            res.status(404).json({
+                status: false,
+                message: "Produk tidak di temukan"
+            })
+        }else{
+            res.status(200).json({
+                status: true,
+                message: "Berhasil update data",
+                dosen
+            })
+        }
+    }).catch((err)=>{
+        res.json({
+            error: err
+        })
+    })
+}
