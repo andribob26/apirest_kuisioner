@@ -86,8 +86,15 @@ exports.deleteDosen = async(req, res)=>{
 }
 
 exports.updateDosen = async(req, res)=>{
+    let dosen = await Dosen.findById(req.params.id)
+                const data = {
+                    namaDosen: req.body.namaDosen || dosen.namaDosen,
+                    nip: req.body.hargaJual || dosen.nip,
+                    noTelepon: req.body.hargaBeli || dosen.noTelepon,
+                    email: req.body.stok || dosen.email,
+                }
     
-    Dosen.findByIdAndUpdate(req.params.id, req.body, {new: true})
+    Dosen.findByIdAndUpdate(req.params.id, data, {new: true})
     .then((dosen)=>{
         if(!dosen){
             res.status(404).json({
