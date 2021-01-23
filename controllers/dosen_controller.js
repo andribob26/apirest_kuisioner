@@ -6,7 +6,7 @@ exports.addDosen = async (req, res)=>{
             {
                 namaDosen: req.body.namaDosen,
                 nip: req.body.nip,
-                noTelepon: req.body.nomorTelepon,
+                noTelepon: req.body.noTelepon,
                 email: req.body.email,
             }
         );
