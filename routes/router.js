@@ -11,7 +11,7 @@ router.get("/", (req, res)=>{
 // ApiDosen
 router.get("/dosen/", getAllDosen)
 router.post("/dosen/add_dosen/", addDosen)
-router.delete("/dosen/delete_dosen/id", deleteDosen)
+router.delete("/dosen/delete_dosen/:id", deleteDosen)
 
 //apipertanyaan
 router.get("/pertanyaan/", getAllPertanyaan)
