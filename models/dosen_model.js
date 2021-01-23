@@ -12,7 +12,7 @@ DosenSchema = mongoose.Schema({
     noTelepon:{
         type: Number
     },
-    alamat:{
+    email:{
         type: String
     },
 

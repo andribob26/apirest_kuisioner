@@ -7,7 +7,7 @@ exports.addDosen = async (req, res)=>{
                 namaDosen: req.body.namaDosen,
                 nip: req.body.nip,
                 noTelepon: req.body.nomorTelepon,
-                alamat: req.body.alamat,
+                email: req.body.email,
             }
         );
     await dosen.save().then(async (doc)=>{
@@ -17,7 +17,7 @@ exports.addDosen = async (req, res)=>{
                 namaDosen: doc.namaDosen,
                 nip: doc.nip,
                 noTelepon: doc.noTelepon,
-                alamat: doc.alamat,
+                email: doc.email,
 
             }
             res.status(200).json({
@@ -43,7 +43,7 @@ exports.getAllDosen = async(req, res)=>{
                 namaDosen : dosen[i].namaDosen,
                 nip: dosen[i].nip,
                 noTelepon: dosen[i].noTelepon,
-                alamat: dosen[i].alamat,
+                email: dosen[i].email,
                 updatedAt: dosen[i].updatedAt,
                 createdAt: dosen[i].createdAt
             }) 
