@@ -89,9 +89,9 @@ exports.updateDosen = async(req, res)=>{
     let dosen = await Dosen.findById(req.params.id)
                 const data = {
                     namaDosen: req.body.namaDosen || dosen.namaDosen,
-                    nip: req.body.hargaJual || dosen.nip,
-                    noTelepon: req.body.hargaBeli || dosen.noTelepon,
-                    email: req.body.stok || dosen.email,
+                    nip: req.body.nip || dosen.nip,
+                    noTelepon: req.body.noTelepon || dosen.noTelepon,
+                    email: req.body.email || dosen.email,
                 }
     
     Dosen.findByIdAndUpdate(req.params.id, data, {new: true})
