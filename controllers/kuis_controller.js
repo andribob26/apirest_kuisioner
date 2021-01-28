@@ -6,7 +6,6 @@ exports.addKuis = async (req, res)=>{
             {   
                 idDosen: req.body.idDosen,
                 namaDosen: req.body.namaDosen,
-                pertanyaan: req.body.pertanyaan,
             }
         );
     await kuis.save().then(async (doc)=>{
@@ -20,9 +19,11 @@ exports.addKuis = async (req, res)=>{
                 hasilKuis.push(
                         {
                             idPertanyaan: doc.hasilKuis[i].idPertanyaan,
-                            sangatSuka: doc.hasilKuis[i].sangatSuka,
-                            suka: doc.hasilKuis[i].suka,
-                            tidakSuka: doc.hasilKuis[i].tidakSuka
+                            sangatBaik: doc.hasilKuis[i].sangatBaik,
+                            baik: doc.hasilKuis[i].baik,
+                            cukup: doc.hasilKuis[i].cukup,
+                            kurang: doc.hasilKuis[i].kurang,
+                            sangatKurang: doc.hasilKuis[i].sangatKurang,
                         }
                     )
             }
@@ -31,7 +32,6 @@ exports.addKuis = async (req, res)=>{
                 id: doc._id,
                 idDosen: doc.idDosen,
                 namaDosen: doc.namaDosen,
-                pertanyaan: doc.pertanyaan,
                 hasilKuis: hasilKuis,
             }
 

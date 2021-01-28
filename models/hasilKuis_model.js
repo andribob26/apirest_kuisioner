@@ -6,13 +6,19 @@ hasilKuisSchema = mongoose.Schema({
     idPertanyaan:{
         type:String
     },
-    sangatSuka: {
+    sangatBaik: {
         type: Number
     },
-    suka: {
+    baik: {
         type: Number
     },
-    tidakSuka: {
+    cukup: {
+        type: Number
+    },
+    kurang: {
+        type: Number
+    },
+    sangatKurang: {
         type: Number
     },
 
