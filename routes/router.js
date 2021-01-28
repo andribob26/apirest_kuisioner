@@ -1,4 +1,5 @@
 const { addDosen, getAllDosen, deleteDosen, updateDosen } = require("../controllers/dosen_controller")
+const { addKuis } = require("../controllers/kuis_controller")
 const { addPertanyaan, getAllPertanyaan } = require("../controllers/pertanyaan_controller")
 
 const router =  require("express").Router()
@@ -17,5 +18,9 @@ router.put("/dosen/update_dosen/:id", updateDosen)
 //apipertanyaan
 router.get("/pertanyaan/", getAllPertanyaan)
 router.post("/pertanyaan/add_pertanyaan/", addPertanyaan)
+
+//apikuis
+router.post("/kuis/add_kuis/", addKuis)
+
 
 module.exports = router

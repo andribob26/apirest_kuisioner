@@ -6,6 +6,7 @@ PertanyaanSchema = mongoose.Schema({
     pertanyaan:{
         type: String
     },
+    
 
 })
 

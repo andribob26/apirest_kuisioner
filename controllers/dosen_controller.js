@@ -1,6 +1,7 @@
 const Dosen = require("../models/dosen_model");
 
 exports.addDosen = async (req, res)=>{
+    // console.log(req.body)
 
     var dosen = new Dosen(
             {
