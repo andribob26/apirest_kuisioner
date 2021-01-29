@@ -27,3 +27,34 @@ exports.getAllKuisioner = async(req, res)=>{
         }
     })   
 }
+
+exports.getKuisionerById = async(req, res)=>{
+    console.log(req.params.id) 
+    await Kuisioner.findById(req.params.id).then((kuisioner)=>{
+        console.log(kuisioner);
+        if(!kuisioner){
+            res.status(404).json({
+                status: false,
+                message: "Produk tidak di temukan"
+            })
+        }else{
+
+            const kuisionerData = {
+                id: kuisioner._id,
+                judulKuisioner: kuisioner.judulKuisioner,
+                pertanyaan: kuisioner.pertanyaan,
+            }
+
+            // console.log(produk._id)
+            res.status(200).json({
+                status: true,
+                message: "Berhasil memuat data",
+                kuisionerData,
+            })
+        }
+    }).catch((err)=>{
+        res.json({
+            error: err
+        })
+    })   
+}
