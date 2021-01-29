@@ -3,7 +3,7 @@ const timestamps  = require("mongoose-timestamp")
 
 PertanyaanSchema = mongoose.Schema({
 
-    pertanyaan:{
+    judulPertanyaan:{
         type: String
     },
     

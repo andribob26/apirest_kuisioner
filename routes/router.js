@@ -1,4 +1,5 @@
 const { addDosen, getAllDosen, deleteDosen, updateDosen } = require("../controllers/dosen_controller")
+const { getAllKuisioner } = require("../controllers/kuisioner_controller")
 const { addKuis } = require("../controllers/kuis_controller")
 const { addPertanyaan, getAllPertanyaan } = require("../controllers/pertanyaan_controller")
 
@@ -22,5 +23,7 @@ router.post("/pertanyaan/add_pertanyaan/", addPertanyaan)
 //apikuis
 router.post("/kuis/add_kuis/", addKuis)
 
+//apiKuisioner
+router.get("/kuisioner/", getAllKuisioner)
 
 module.exports = router
