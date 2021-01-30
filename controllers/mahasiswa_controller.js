@@ -35,7 +35,7 @@ exports.getAllMahasiswa = async(req, res)=>{
         const mahasiswaData = []
         for(let i = 0; i < mahasiswa.length; i++){
             mahasiswaData.push({
-                id: mahasiswa[i]._id,
+                idMhs: mahasiswa[i]._id,
                 namaMhs : mahasiswa[i].namaMhs,
                 nim: mahasiswa[i].nim,
                 updatedAt: mahasiswa[i].updatedAt,
@@ -124,4 +124,35 @@ exports.getMhsLogin= (req, res) => {
 
            
     })
+}
+
+exports.getMhsById = async(req, res)=>{
+
+    await Mahasiswa.findById(req.params.id).then((mahasiswa)=>{
+   
+        if(!mahasiswa){
+            res.status(404).json({
+                status: false,
+                message: "Mahasiswa tidak di temukan"
+            })
+        }else{
+
+            const mahasiswaData = {
+                idMhs: mahasiswa._id,
+                namaMhs: mahasiswa.namaMhs,
+                nim: mahasiswa.nim,
+            }
+
+            // console.log(produk._id)
+            res.status(200).json({
+                status: true,
+                message: "Berhasil memuat data",
+                mahasiswaData,
+            })
+        }
+    }).catch((err)=>{
+        res.json({
+            error: err
+        })
+    })   
 }
