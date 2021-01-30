@@ -109,3 +109,14 @@ exports.logoutMhs = (req, res) =>{
         if (err) return res.json({ success: false, err })
         return res.status(200).send({ success: true, message: "Logout berhasil" });})
 }
+
+exports.getMhsLogin= (req, res) => {
+    // console.log(req);
+    return res.status(200).json({
+        isAuthenticated: true,
+
+        idMhs: req.mahasiswa._id,
+        namaMhs: req.mahasiswa.namaMhs,
+        nim: req.mahasiswa.nim,    
+    })
+}
