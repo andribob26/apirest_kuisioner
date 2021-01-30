@@ -115,3 +115,54 @@ exports.updateDosen = async(req, res)=>{
         })
     })
 }
+
+exports.getDosenById = async(req, res)=>{
+
+    await Dosen.findById(req.params.id).then((dosen)=>{
+        
+        
+   
+        if(!dosen){
+            res.status(404).json({
+                status: false,
+                message: "Dosen tidak di temukan"
+            })
+        }else{
+
+            const kuisioner = []
+
+            for (let i = 0; i < dosen.kuisioner.length; i++) {
+                kuisioner.push({
+                    idMhs: dosen.kuisioner[i]._id,
+                    namaMhs : dosen.kuisioner[i].namaMhs,
+                    idKuisioner: dosen.kuisioner[i].idKuisioner,
+                    judulKuisioner: dosen.kuisioner[i].judulKuisioner,
+                    hasilKuis: dosen.kuisioner[i].hasilKuis,
+                    updatedAt: dosen.kuisioner[i].updatedAt,
+                    createdAt: dosen.kuisioner[i].createdAt
+                }) 
+                
+            }
+
+            const dosenData = {
+                id: dosen._id,
+                namaDosen: dosen.namaDosen,
+                nip: dosen.nip,
+                noTelepon: dosen.noTelepon,
+                email: dosen.email,
+                kuisioner: kuisioner,
+            }
+
+            // console.log(produk._id)
+            res.status(200).json({
+                status: true,
+                message: "Berhasil memuat data",
+                dosenData,
+            })
+        }
+    }).catch((err)=>{
+        res.json({
+            error: err
+        })
+    })   
+}

@@ -1,5 +1,5 @@
 const { addAdmin } = require("../controllers/admin_controller")
-const { addDosen, getAllDosen, deleteDosen, updateDosen } = require("../controllers/dosen_controller")
+const { addDosen, getAllDosen, deleteDosen, updateDosen, getDosenById } = require("../controllers/dosen_controller")
 const { getAllKuisioner, getKuisionerById } = require("../controllers/kuisioner_controller")
 const { addKuis } = require("../controllers/kuis_controller")
 const { addMahasiswa, getAllMahasiswa, loginMhs, logoutMhs, getMhsLogin, getMhsById} = require("../controllers/mahasiswa_controller")
@@ -16,6 +16,7 @@ router.post("/admin/add_admin/", addAdmin)
 
 // ApiDosen
 router.get("/dosen/", getAllDosen)
+router.get("/dosen/:id", getDosenById)
 router.post("/dosen/add_dosen/", addDosen)
 router.delete("/dosen/delete_dosen/:id", deleteDosen)
 router.put("/dosen/update_dosen/:id", updateDosen)
