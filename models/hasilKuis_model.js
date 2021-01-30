@@ -3,7 +3,10 @@ const timestamps  = require("mongoose-timestamp")
 
 hasilKuisSchema = mongoose.Schema({
 
-    idPertanyaan:{
+    idMhs:{
+        type:String
+    },
+    idKuisoner:{
         type:String
     },
     sangatBaik: {

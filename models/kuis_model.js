@@ -11,7 +11,10 @@ kuisSchema = mongoose.Schema({
     },
     hasilKuis:[
         {
-            idPertanyaan:{
+            idMhs:{
+                type:String
+            },
+            idKuisoner:{
                 type:String
             },
             sangatBaik: {

@@ -15,6 +15,41 @@ DosenSchema = mongoose.Schema({
     email:{
         type: String
     },
+    kuisioner:[
+        {
+            idMhs:{
+                type:String
+            },
+            namaMhs:{
+                type:String
+            },
+            idKuisioner:{
+                type:String
+            },
+            judulKuisioner:{
+                type:String
+            },
+            hasilKuis:[
+                {
+                    sangatBaik: {
+                        type: Number
+                    },
+                    baik: {
+                        type: Number
+                    },
+                    cukup: {
+                        type: Number
+                    },
+                    kurang: {
+                        type: Number
+                    },
+                    sangatKurang: {
+                        type: Number
+                    },
+                }
+            ]
+        }
+        ],
 
 })
 
