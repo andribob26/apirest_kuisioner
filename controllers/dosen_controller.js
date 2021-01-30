@@ -133,7 +133,7 @@ exports.getDosenById = async(req, res)=>{
 
             for (let i = 0; i < dosen.kuisioner.length; i++) {
                 kuisioner.push({
-                    idMhs: dosen.kuisioner[i]._id,
+                    idMhs: dosen.kuisioner[i].idMhs,
                     namaMhs : dosen.kuisioner[i].namaMhs,
                     idKuisioner: dosen.kuisioner[i].idKuisioner,
                     judulKuisioner: dosen.kuisioner[i].judulKuisioner,
