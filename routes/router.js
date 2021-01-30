@@ -1,10 +1,11 @@
-const { addAdmin } = require("../controllers/admin_controller")
+const { addAdmin, loginAdmin, logoutAdmin } = require("../controllers/admin_controller")
 const { addDosen, getAllDosen, deleteDosen, updateDosen, getDosenById } = require("../controllers/dosen_controller")
 const { getAllKuisioner, getKuisionerById } = require("../controllers/kuisioner_controller")
 const { addKuis } = require("../controllers/kuis_controller")
 const { addMahasiswa, getAllMahasiswa, loginMhs, logoutMhs, getMhsLogin, getMhsById} = require("../controllers/mahasiswa_controller")
 const { addPertanyaan, getAllPertanyaan } = require("../controllers/pertanyaan_controller")
 const { authMhs } = require("../middleware/authMhs")
+const { authAdmin } = require("../middleware/authAdmin")
 
 const router =  require("express").Router()
 
@@ -13,6 +14,8 @@ router.get("/", (req, res)=>{
     res.send("Selamat datang")
 })
 router.post("/admin/add_admin/", addAdmin)
+router.post("/admin/login", loginAdmin)
+router.get("/admin/logout", authAdmin, logoutAdmin)
 
 // ApiDosen
 router.get("/dosen/", getAllDosen)
