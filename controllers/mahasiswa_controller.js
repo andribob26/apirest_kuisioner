@@ -114,9 +114,14 @@ exports.getMhsLogin= (req, res) => {
     // console.log(req);
     return res.status(200).json({
         isAuthenticated: true,
+        profileData:[
+            {
+                id: req.mahasiswa._id,
+                namaMhs: req.mahasiswa.namaMhs,
+                nim: req.mahasiswa.nim, 
+            }
+        ]
 
-        idMhs: req.mahasiswa._id,
-        namaMhs: req.mahasiswa.namaMhs,
-        nim: req.mahasiswa.nim,    
+           
     })
 }
