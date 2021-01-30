@@ -1,3 +1,4 @@
+const { addAdmin } = require("../controllers/admin_controller")
 const { addDosen, getAllDosen, deleteDosen, updateDosen } = require("../controllers/dosen_controller")
 const { getAllKuisioner, getKuisionerById } = require("../controllers/kuisioner_controller")
 const { addKuis } = require("../controllers/kuis_controller")
@@ -10,6 +11,7 @@ const router =  require("express").Router()
 router.get("/", (req, res)=>{
     res.send("Selamat datang")
 })
+router.post("/admin/add_admin/", addAdmin)
 
 // ApiDosen
 router.get("/dosen/", getAllDosen)
