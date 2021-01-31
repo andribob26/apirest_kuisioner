@@ -48,23 +48,17 @@ exports.loginAdmin = (req, res)=>{
                         message: 'User password salah!'
                     })
                 }else{
-                    admin.generateToken((err, admin)=>{
-                        if(err){
-                            return res.status(400).send({err})
-                        }else{
-                            const data = {
-                                idAdmin: admin._id,
-                                namaAdmin: admin.namaAdmin,
-                                username: admin.username,
-                                role: admin.role,
-                                token: admin.token
-                            }
-                            res.cookie('authTokenAdmin', admin.token).status(200).json({
-                                success:true,
-                                message:'Login berhasil',
-                                adminData: data
-                            })
-                        }
+                    const data = {
+                        idAdmin: admin._id,
+                        namaAdmin: admin.namaAdmin,
+                        username: admin.username,
+                        role: admin.role,
+                        // token: admin.token
+                    }
+                    res.status(200).json({
+                        success:true,
+                        message:'Login berhasil',
+                        adminData: data
                     })
                 }
             })
@@ -72,11 +66,11 @@ exports.loginAdmin = (req, res)=>{
     })
 }
 
-exports.logoutAdmin = (req, res) =>{
-    console.log(req.token)
-    Admin.findByIdAndUpdate(
-        { _id: req.admin._id }, { token: '' },{new: true},
-        (err) => {
-        if (err) return res.json({ success: false, err })
-        return res.status(200).send({ success: true, message: "Logout berhasil" });})
-}
+// exports.logoutAdmin = (req, res) =>{
+//     console.log(req.token)
+//     Admin.findByIdAndUpdate(
+//         { _id: req.admin._id }, { token: '' },{new: true},
+//         (err) => {
+//         if (err) return res.json({ success: false, err })
+//         return })
+// }

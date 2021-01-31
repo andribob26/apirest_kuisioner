@@ -77,23 +77,17 @@ exports.loginMhs = (req, res)=>{
                         message: 'User password salah!'
                     })
                 }else{
-                    mahasiswa.generateToken((err, mahasiswa)=>{
-                        if(err){
-                            return res.status(400).send({err})
-                        }else{
-                            const data = {
-                                idMhs: mahasiswa._id,
-                                namaMhs: mahasiswa.namaMhs,
-                                nim: mahasiswa.nim,
-                                role: mahasiswa.role,
-                                token: mahasiswa.token
-                            }
-                            res.cookie('authToken', mahasiswa.token).status(200).json({
-                                success:true,
-                                message:'Login berhasil',
-                                mahasiswaData: data
-                            })
-                        }
+                    const data = {
+                        idMhs: mahasiswa._id,
+                        namaMhs: mahasiswa.namaMhs,
+                        nim: mahasiswa.nim,
+                        role: mahasiswa.role,
+                        // token: mahasiswa.token
+                    }
+                    res.status(200).json({
+                        success:true,
+                        message:'Login berhasil',
+                        mahasiswaData: data
                     })
                 }
             })
@@ -101,14 +95,14 @@ exports.loginMhs = (req, res)=>{
     })
 }
 
-exports.logoutMhs = (req, res) =>{
-    console.log(req.token)
-    Mahasiswa.findByIdAndUpdate(
-        { _id: req.mahasiswa._id }, { token: '' },
-        (err) => {
-        if (err) return res.json({ success: false, err })
-        return res.status(200).send({ success: true, message: "Logout berhasil" });})
-}
+// exports.logoutMhs = (req, res) =>{
+//     console.log(req.token)
+//     Mahasiswa.findByIdAndUpdate(
+//         { _id: req.mahasiswa._id }, { token: '' }, {new: true},
+//         (err) => {
+//         if (err) return res.json({ success: false, err })
+//         return res.status(200).send({ success: true, message: "Logout berhasil" });})
+// }
 
 exports.getMhsLogin= (req, res) => {
     // console.log(req);

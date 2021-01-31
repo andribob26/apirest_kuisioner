@@ -15,7 +15,7 @@ router.get("/", (req, res)=>{
 })
 router.post("/admin/add_admin/", addAdmin)
 router.post("/admin/login", loginAdmin)
-router.get("/admin/logout", authAdmin, logoutAdmin)
+// router.get("/admin/logout", authAdmin, logoutAdmin)
 
 // ApiDosen
 router.get("/dosen/", getAllDosen)
@@ -26,11 +26,11 @@ router.put("/dosen/update_dosen/:id", updateDosen)
 
 //apimahasiswa
 router.post("/mahasiswa/login", loginMhs)
-router.get("/mahasiswa/logout", authMhs, logoutMhs)
+// router.get("/mahasiswa/logout", authMhs, logoutMhs)
 router.get("/mahasiswa/", getAllMahasiswa)
 router.get("/mahasiswa/:id", getMhsById)
 router.post("/mahasiswa/add_mahasiswa/", addMahasiswa)
-router.get("/mahasiswa/profil", authMhs, getMhsLogin)
+// router.get("/mahasiswa/profil", authMhs, getMhsLogin)
 
 //apipertanyaan
 router.get("/pertanyaan/", getAllPertanyaan)

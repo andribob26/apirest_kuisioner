@@ -60,34 +60,34 @@ AdminSchema.methods.comparePassword = function(candidatePass, callBack){
 }
 
 
-AdminSchema.methods.generateToken = function (callBack) {
-    var admin = this;
-    var token = jwt.sign(admin._id.toHexString(), secret)
-    admin.token = token
-    admin.save(function (err, admin) {
-        if(err){
-            return callBack(err)
-        }
-        callBack(null, admin)
-    })
-}
+// AdminSchema.methods.generateToken = function (callBack) {
+//     var admin = this;
+//     var token = jwt.sign(admin._id.toHexString(), secret)
+//     admin.token = token
+//     admin.save(function (err, admin) {
+//         if(err){
+//             return callBack(err)
+//         }
+//         callBack(null, admin)
+//     })
+// }
 
 
-AdminSchema.statics.findByToken = function(token, callBack){
-    var admin = this
-    jwt.verify(token, secret, function(err, decode){
-        admin.findOne({
-            '_id': decode,
-            'token': token
-        },function(err, admin){
-            if(err){
-                return callBack(err)
-            }
-            callBack(null, admin)
+// AdminSchema.statics.findByToken = function(token, callBack){
+//     var admin = this
+//     jwt.verify(token, secret, function(err, decode){
+//         admin.findOne({
+//             '_id': decode,
+//             'token': token
+//         },function(err, admin){
+//             if(err){
+//                 return callBack(err)
+//             }
+//             callBack(null, admin)
             
-        })
-    })
-}
+//         })
+//     })
+// }
 
 
 const Admin = mongoose.model('Admin', AdminSchema)
