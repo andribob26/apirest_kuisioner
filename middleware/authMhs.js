@@ -1,5 +1,6 @@
 const {Mahasiswa} = require("../models/mahasiswa_model")
 let authMhs =(req, res, next)=>{
+    console.log(req.cookies)
     let token = req.cookies.authToken;
     Mahasiswa.findByToken(token,(err,mahasiswa)=>{
         if(err) throw err;

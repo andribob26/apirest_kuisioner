@@ -1,6 +1,7 @@
 const {Admin} = require("../models/admin_model")
 let authAdmin =(req, res, next)=>{
-    let token = req.cookies.authToken;
+    console.log(req.cookies);
+    let token = req.cookies.authTokenAdmin;
     Admin.findByToken(token,(err,admin)=>{
         if(err) throw err;
         if(!admin) {
