@@ -3,7 +3,7 @@ const { addDosen, getAllDosen, deleteDosen, updateDosen, getDosenById } = requir
 const { getAllKuisioner, getKuisionerById } = require("../controllers/kuisioner_controller")
 const { addKuis } = require("../controllers/kuis_controller")
 const { addMahasiswa, getAllMahasiswa, loginMhs, logoutMhs, getMhsLogin, getMhsById} = require("../controllers/mahasiswa_controller")
-const { addPertanyaan, getAllPertanyaan } = require("../controllers/pertanyaan_controller")
+const { addPertanyaan, getAllPertanyaan, deleteKuisioner } = require("../controllers/pertanyaan_controller")
 const { authMhs } = require("../middleware/authMhs")
 const { authAdmin } = require("../middleware/authAdmin")
 
@@ -42,5 +42,6 @@ router.put("/kuis/add_kuis/:id", addKuis)
 //apiKuisioner
 router.get("/kuisioner/", getAllKuisioner)
 router.get("/kuisioner/:id", getKuisionerById)
+router.delete("/kuisioner/delete_kuisioner/:id", deleteKuisioner)
 
 module.exports = router

@@ -1,5 +1,6 @@
 const Pertanyaan = require("../models/pertanyaan_model");
-const Kuisioner = require("../models/kuisioner_model")
+const Kuisioner = require("../models/kuisioner_model");
+const Dosen = require("../models/dosen_model");
 
 // exports.addPertanyaan = async (req, res)=>{
 
@@ -97,5 +98,78 @@ exports.getAllPertanyaan = async(req, res)=>{
                 pertanyaanData
             })
         }
+    })   
+}
+
+exports.deleteKuisioner = async(req, res)=>{
+    // console.log(req.params.id)
+    await Dosen.find({}, (err, dosen)=>{
+    
+        
+        for (let i = 0; i < dosen.length; i++) {
+            
+            for (let j = 0; j < dosen[i].kuisioner.length; j++) {
+            
+             
+                // console.log(dosen[i].kuisioner[j]);
+                if (req.params.id == dosen[i].kuisioner[j].idKuisioner) {
+                    console.log("jalan")
+                    console.log(dosen[i].kuisioner[j].idKuisioner)
+                    Dosen.findByIdAndUpdate(dosen[i]._id , { $pull: { kuisioner: {idKuisioner:dosen[i].kuisioner[j].idKuisioner} } },  {new: true}).then(async(doc)=>{
+                      ///
+                      Kuisioner.findByIdAndRemove(req.params.id)
+                        .then((kuisioner)=>{
+                            if(!kuisioner){
+                                res.status(404).json({
+                                    status: false,
+                                    message: "Data dosen tidak di temukan"
+                                })
+                            }else{
+                                res.status(200).json({
+                                    status: true,
+                                    message: "Berhasil hapus data",
+                                })
+                            }
+                        }).catch((err)=>{
+                            res.json({
+                                error: err
+                            })
+                        })
+                        ////
+                     
+                    }).catch((err)=>{
+                        res.json({
+                            error: err
+                        })
+                    });
+                    
+                }
+
+                Kuisioner.findByIdAndRemove(req.params.id)
+                        .then((kuisioner)=>{
+                            if(!kuisioner){
+                                res.status(404).json({
+                                    status: false,
+                                    message: "Data dosen tidak di temukan"
+                                })
+                            }else{
+                                res.status(200).json({
+                                    status: true,
+                                    message: "Berhasil hapus data",
+                                })
+                            }
+                        }).catch((err)=>{
+                            res.json({
+                                error: err
+                            })
+                        })
+
+              
+            }
+        }
+
+        // console.log(req.params.id)
+
+
     })   
 }
