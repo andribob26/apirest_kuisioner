@@ -45,6 +45,7 @@ exports.getAllDosen = async(req, res)=>{
                 nip: dosen[i].nip,
                 noTelepon: dosen[i].noTelepon,
                 email: dosen[i].email,
+                kuisioner: dosen[i].kuisioner,
                 updatedAt: dosen[i].updatedAt,
                 createdAt: dosen[i].createdAt
             }) 
