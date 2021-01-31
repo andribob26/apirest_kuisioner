@@ -75,7 +75,7 @@ exports.loginAdmin = (req, res)=>{
 exports.logoutAdmin = (req, res) =>{
     console.log(req.token)
     Admin.findByIdAndUpdate(
-        { _id: req.admin._id }, { token: '' },
+        { _id: req.admin._id }, { token: '' },{new: true},
         (err) => {
         if (err) return res.json({ success: false, err })
         return res.status(200).send({ success: true, message: "Logout berhasil" });})
