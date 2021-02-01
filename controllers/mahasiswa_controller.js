@@ -1,4 +1,5 @@
 const {Mahasiswa} = require('../models/mahasiswa_model')
+const Dosen = require("../models/dosen_model");
 
 exports.addMahasiswa = (req, res)=>{
     let mahasiswa = new Mahasiswa({
@@ -148,5 +149,78 @@ exports.getMhsById = async(req, res)=>{
         res.json({
             error: err
         })
+    })   
+}
+
+exports.deleteMahasiswa = async(req, res)=>{
+    // console.log(req.params.id)
+    await Dosen.find({}, (err, dosen)=>{
+    
+        
+        for (let i = 0; i < dosen.length; i++) {
+            
+            for (let j = 0; j < dosen[i].kuisioner.length; j++) {
+            
+             
+                // console.log(dosen[i].kuisioner[j]);
+                if (req.params.id == dosen[i].kuisioner[j].idMhs) {
+                    console.log("jalan")
+                    console.log(dosen[i].kuisioner[j].idMhs)
+                    Dosen.findByIdAndUpdate(dosen[i]._id , { $pull: { kuisioner: {idMhs:dosen[i].kuisioner[j].idMhs} } },  {new: true}).then(async(doc)=>{
+                      ///
+                      Mahasiswa.findByIdAndRemove(req.params.id)
+                        .then((mahasiswa)=>{
+                            if(!mahasiswa){
+                                res.status(404).json({
+                                    status: false,
+                                    message: "Data mahasiswa tidak di temukan"
+                                })
+                            }else{
+                                res.status(200).json({
+                                    status: true,
+                                    message: "Berhasil hapus data",
+                                })
+                            }
+                        }).catch((err)=>{
+                            res.json({
+                                error: err
+                            })
+                        })
+                        ////
+                     
+                    }).catch((err)=>{
+                        res.json({
+                            error: err
+                        })
+                    });
+                    
+                }
+
+                Mahasiswa.findByIdAndRemove(req.params.id)
+                        .then((mahasiswa)=>{
+                            if(!mahasiswa){
+                                res.status(404).json({
+                                    status: false,
+                                    message: "Data mahasiswa tidak di temukan"
+                                })
+                            }else{
+                                res.status(200).json({
+                                    status: true,
+                                    message: "Berhasil hapus data",
+                                })
+                            }
+                        }).catch((err)=>{
+                            res.json({
+                                error: err
+                            })
+                        })
+
+              
+            }
+        }
+
+        // console.log(req.params.id)
+
+
     })   
 }
