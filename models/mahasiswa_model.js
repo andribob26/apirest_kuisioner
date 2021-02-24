@@ -50,6 +50,8 @@ MahasiswaSchema.pre('save', function (next){
 })
 
 
+
+
 MahasiswaSchema.methods.comparePassword = function(candidatePass, callBack){
     bcrypt.compare(candidatePass, this.password, function (err, isMatch) {
         if(err){

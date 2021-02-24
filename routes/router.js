@@ -2,7 +2,7 @@ const { addAdmin, loginAdmin, logoutAdmin } = require("../controllers/admin_cont
 const { addDosen, getAllDosen, deleteDosen, updateDosen, getDosenById } = require("../controllers/dosen_controller")
 const { getAllKuisioner, getKuisionerById } = require("../controllers/kuisioner_controller")
 const { addKuis } = require("../controllers/kuis_controller")
-const { addMahasiswa, getAllMahasiswa, loginMhs, logoutMhs, getMhsLogin, getMhsById, deleteMahasiswa} = require("../controllers/mahasiswa_controller")
+const { addMahasiswa, getAllMahasiswa, loginMhs, logoutMhs, getMhsLogin, getMhsById, deleteMahasiswa, ubahPassMahasiswa} = require("../controllers/mahasiswa_controller")
 const { addPertanyaan, getAllPertanyaan, deleteKuisioner } = require("../controllers/pertanyaan_controller")
 const { authMhs } = require("../middleware/authMhs")
 const { authAdmin } = require("../middleware/authAdmin")
@@ -31,6 +31,7 @@ router.get("/mahasiswa/", getAllMahasiswa)
 router.get("/mahasiswa/:id", getMhsById)
 router.post("/mahasiswa/add_mahasiswa/", addMahasiswa)
 router.delete("/mahasiswa/delete_mahasiswa/:id", deleteMahasiswa)
+router.post("/mahasiswa/ubah_password/:id", ubahPassMahasiswa)
 // router.get("/mahasiswa/profil", authMhs, getMhsLogin)
 
 //apipertanyaan
