@@ -230,44 +230,55 @@ exports.deleteMahasiswa = async(req, res)=>{
 exports.ubahPassMahasiswa = async(req, res)=>{
     await Mahasiswa.findById(req.params.id).then((mahasiswa)=>{
         console.log(mahasiswa)
-        bcrypt.genSalt(salt, function(err, salt) {
-            bcrypt.hash(req.body.password, salt, function(err, hash) {
-                req.body.password = hash;
-                
-
-                // let data = {_id:req.params.id}
-                const data = {
-                    namaMhs: req.body.namaMhs || mahasiswa.namaMhs,
-                    nim: req.body.nim || mahasiswa.nim,
-                    password: hash || mahasiswa.password,
-                    role: req.body.role || mahasiswa.role,
-                }
-                console.log(data)
-                // Mahasiswa.update(query, mahasiswa, function(err){
-
-                // })
-                Mahasiswa.findByIdAndUpdate(req.params.id, data, {new: true})
-                .then((mahasiswa)=>{
-                    if(!mahasiswa){
-                        res.status(404).json({
-                            status: false,
-                            message: "Produk tidak di temukan"
+        mahasiswa.comparePassword(req.body.password, (err, isMatch) =>{
+            // console.log(isMatch)
+            if(!isMatch){
+                return res.status(400).json({
+                    success: false,
+                    message: 'User password salah!'
+                })
+            }else{
+                bcrypt.genSalt(salt, function(err, salt) {
+                    bcrypt.hash(req.body.passwordBaru, salt, function(err, hash) {
+                        req.body.passwordBaru = hash;
+                        
+        
+                        // let data = {_id:req.params.id}
+                        const data = {
+                            namaMhs: req.body.namaMhs || mahasiswa.namaMhs,
+                            nim: req.body.nim || mahasiswa.nim,
+                            password: hash || mahasiswa.password,
+                            role: req.body.role || mahasiswa.role,
+                        }
+                        // console.log(data)
+                        // Mahasiswa.update(query, mahasiswa, function(err){
+        
+                        // })
+                        Mahasiswa.findByIdAndUpdate(req.params.id, data, {new: true})
+                        .then((mahasiswa)=>{
+                            if(!mahasiswa){
+                                res.status(404).json({
+                                    status: false,
+                                    message: "Produk tidak di temukan"
+                                })
+                            }else{
+                                res.status(200).json({
+                                    status: true,
+                                    message: "Berhasil ganti password",
+                                    mahasiswa
+                                })
+                            }
+                        }).catch((err)=>{
+                            res.json({
+                                error: err
+                            })
                         })
-                    }else{
-                        res.status(200).json({
-                            status: true,
-                            message: "Berhasil ganti password",
-                            mahasiswa
-                        })
-                    }
-                }).catch((err)=>{
-                    res.json({
-                        error: err
+        
                     })
                 })
-
-            })
+            }
         })
+        
     })
     // console.log(req.params.id)
     
