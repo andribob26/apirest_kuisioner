@@ -22,7 +22,7 @@ router.get("/dosen/", getAllDosen)
 router.get("/dosen/:id", getDosenById)
 router.post("/dosen/add_dosen/", addDosen)
 router.delete("/dosen/delete_dosen/:id", deleteDosen)
-router.put("/dosen/update_dosen/:id", updateDosen)
+router.put("/dosen/update_dosen/:id", updnateDosen)
 
 //apimahasiswa
 router.post("/mahasiswa/login", loginMhs)
